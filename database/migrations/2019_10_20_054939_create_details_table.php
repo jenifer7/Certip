@@ -15,6 +15,14 @@ class CreateDetailsTable extends Migration
     {
         Schema::create('details', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('sale_id');
+            $table->unsignedBigInteger('product_id');
+            $table->decimal('price_unit');
+            $table->bigInteger('quantity');
+            $table->decimal('sub_total');
+            $table->decimal('total_sales');
+            $table->foreign('sale_id')->references('id')->on('sales');
+            $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
         });
     }
