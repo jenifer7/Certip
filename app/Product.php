@@ -14,4 +14,16 @@ class Product extends Model
         'date_received',
         'supplier_id'
     ];
+
+    public function supplier(){
+        return $this->belongsTo('App\Supplier');
+    }
+
+    public function sale(){
+        return $this->belongsTo('App\Sale');
+    }
+
+    public function detail(){
+        return $this->belongsTo('App\Detail');
+    }
 }
