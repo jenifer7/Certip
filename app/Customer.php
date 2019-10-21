@@ -16,4 +16,8 @@ class Customer extends Model
         'address',
         'nit'
     ];
+
+    public function sales(){
+        return $this->hasMany('App\Sale');
+    }
 }
