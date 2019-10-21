@@ -18,4 +18,12 @@ class Detail extends Model
         'sub_total',
         'total_sales'
     ];
+
+    public function sale(){
+        return $this->belongsTo('App\Sale');
+    }
+
+    public function products(){
+        return $this->hasMany('App\Product');
+    }
 }
