@@ -19,7 +19,7 @@ class CreateEmployeesTable extends Migration
             $table->string('position');
             $table->string('phone');
             $table->string('address');
-            $table->string('gender');
+            $table->boolean('gender');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
