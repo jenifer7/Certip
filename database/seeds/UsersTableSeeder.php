@@ -23,5 +23,6 @@ class UsersTableSeeder extends Seeder
                 'password' => bcrypt('iamironman'),
             ],
         ];
+        DB::table('users')->insert($users);
     }
 }
