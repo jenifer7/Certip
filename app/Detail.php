@@ -24,7 +24,7 @@ class Detail extends Model
         return $this->belongsTo('App\Sale');
     }
 
-    public function products(){
-        return $this->hasMany('App\Product');
+    public function product(){
+        return $this->belongsTo('App\Product');
     }
 }
