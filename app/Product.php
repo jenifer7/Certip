@@ -20,11 +20,11 @@ class Product extends Model
         return $this->belongsTo('App\Supplier');
     }
 
-    public function sale(){
-        return $this->belongsTo('App\Sale');
+    public function sales(){
+        return $this->hasMany('App\Sale');
     }
 
-    public function detail(){
-        return $this->belongsTo('App\Detail');
+    public function details(){
+        return $this->hasMany('App\Detail');
     }
 }
