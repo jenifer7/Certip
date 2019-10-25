@@ -24,7 +24,7 @@ class SupplierController extends Controller
      */
     public function create()
     {
-        //
+        return view('supplier.create');
     }
 
     /**
@@ -35,7 +35,8 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $suppl = Supplier::create($request->all());
+        return view('supplier.show', compact('supplier'));
     }
 
     /**
@@ -44,9 +45,10 @@ class SupplierController extends Controller
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(Supplier $supplier)
+    public function show($id)
     {
-        //
+        $prov = Supplier::find($id);
+        return view('supplier.show', compact('supplier'));
     }
 
     /**
