@@ -11,16 +11,21 @@ class SupplierController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
+     * Listado de proveedores
      */
     public function index()
     {
-        //
+        $suppl = Supplier::all();
+        return view('supplier.index', compact('suppl'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * 
+     * formulario para crear uno nuevo
      */
     public function create()
     {
@@ -32,11 +37,13 @@ class SupplierController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * 
+     * Guarda el nuevo proveedor en la base de datos
      */
     public function store(Request $request)
     {
         $suppl = Supplier::create($request->all());
-        return view('supplier.show', compact('supplier'));
+        return redirect('suppliers');
     }
 
     /**
@@ -44,11 +51,13 @@ class SupplierController extends Controller
      *
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
+     * 
+     * muestra un proveedor especifico identificado por id
      */
     public function show($id)
     {
-        $prov = Supplier::find($id);
-        return view('supplier.show', compact('supplier'));
+        $suppl = Supplier::find($id);
+        return view('supplier.show', compact('suppl'));
     }
 
     /**
@@ -56,10 +65,13 @@ class SupplierController extends Controller
      *
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
+     * 
+     * muestra el formulario para editar un dato que ya exite
      */
-    public function edit(Supplier $supplier)
+    public function edit($id)
     {
-        //
+        $suppl = Supplier::find($id);
+        return view('supplier.edit', compact('suppl'));
     }
 
     /**
@@ -68,10 +80,15 @@ class SupplierController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
+     * 
+     * guarda los cambios que se hacen en el fomulario
+     * edit
      */
-    public function update(Request $request, Supplier $supplier)
+    public function update(Request $request, $id)
     {
-        //
+        $suppl = Supplier::find($id);
+        $suppl->update($request->all());
+        return view('supplier.show', compact('suppl'));
     }
 
     /**
@@ -79,9 +96,14 @@ class SupplierController extends Controller
      *
      * @param  \App\Supplier  $supplier
      * @return \Illuminate\Http\Response
+     * 
+     * eliminar un registro
      */
-    public function destroy(Supplier $supplier)
+    public function destroy($id)
     {
-        //
+        $suppl = Supplier::find($id);
+        $suppl->delete();
+        
+        return redirect('suppliers');
     }
 }
