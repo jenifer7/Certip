@@ -11,14 +11,14 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home');
-
 Auth::routes();
 
+Route::get('/', 'HomeController@index')->name('home');
 
-Route::get('/employee', 'EmployeeController@create');
-
-Route::get('/product', 'ProductController@create');
-
-Route::get('/supplier', 'SupplierController@create');
-Route::post('/supplier', 'SupplierController@store');
+Route::get('/suppliers', 'SupplierController@index')->name('index');
+Route::get('/supplier', 'SupplierController@create')->name('create');
+Route::post('/supplier', 'SupplierController@store')->name('store');
+Route::get('/supplier{suppl}', 'SupplierController@show')->name('show');
+Route::get('/supplier/{suppl}', 'SupplierController@edit')->name('edit');
+Route::patch('/supplier/{suppl}', 'SupplierController@update')->name('update');
+Route::delete('/supplier/{suppl}', 'SupplierController@destroy')->name('destroy');
