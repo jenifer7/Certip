@@ -3,25 +3,37 @@
 @section('title', 'Bienvenido!!')
 @section('content')
 
+<div class="card uper">
+  <div class="card-body">
+    @if ($errors->any())
+      <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+      </div><br />
+    @endif
+    
 <div>
     <div>
-        <form action="/supplier" class="form" method="post">
-            @csrf 
+        <form action="{{ route('store') }}" class="form" method="post">
+            @csrf
             <div>
                 <label>Nombre</label>
-                <input type="text" name="name" class="input">
+                <input type="text" name="name" class="input" required>
             </div>
             <div>
                 <label>Telefono</label>
-                <input type="text" name="phone" class="input">
+                <input type="text" name="phone" class="input" required>
             </div>
             <div>
                 <label>Dirección</label>
-                <input type="text" name="address" class="input">
+                <input type="text" name="address" class="input" required>
             </div>
             <div>
                 <label>
-                    <input type="checkbox">Activo
+                    <input name="is_active" type="checkbox">Activo
                 </label>
             </div>
             <div>
