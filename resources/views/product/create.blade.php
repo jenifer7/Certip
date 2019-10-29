@@ -19,12 +19,12 @@
         <input type="text" name="description" class="input">
     </div>
     <div>
-        <label>Cantidad Disponible</label>
+        <label>Stock</label>
         <input type="text" name="stock" class="input">
     </div>
     <div>
         <label>Fecha Entrada Producto</label>
-        <input type="text" name="date_received" class="input">
+        <input type="date" name="date_received" class="input">
     </div>
     <div>
         <label>Proveedor</label>
