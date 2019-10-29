@@ -32,7 +32,6 @@
                 <td>{{ $custom->address }}</td>
                 <td>{{ $custom->nit }}</td>
                 <td>{{ $custom->is_active }}</td>
-                <td><a href="{{ route('cliente.create') }}"><input type="submit" value="Agregar Nuevo"></a></td>
                 <td><a href="{{ route('cliente.edit', $custom->id) }}"><input type="submit" value="Editar"></a></td>
                 <td>
                     <form action="{{ route('cliente.destroy', $custom->id) }}" method="post"> 
@@ -41,6 +40,7 @@
                         <input type="submit" value="Borrar">
                     </form>
                 </td>
+                <td><a href="{{ route('cliente.index') }}"><input type="submit" value="Regresar"></a></td>
             </tr>
         </tbody>
     </table>
