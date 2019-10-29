@@ -14,7 +14,8 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        //
+        $custom = Customer::all();
+        return view('customer.index', compact('custom'));
     }
 
     /**
@@ -24,18 +25,19 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        return view('customer.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $request                                                                   
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
+        $custom = Customer::create($request->all());
+        return redirect('customers');
     }
 
     /**
@@ -44,9 +46,10 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function show(Customer $customer)
+    public function show($id)
     {
-        //
+        $custom = Customer::find($id);
+        return view('customer.show', compact('custom'));
     }
 
     /**
@@ -55,9 +58,10 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Customer $customer)
+    public function edit($id)
     {
-        //
+        $custom = Customer::find($id);
+        return view('customer.edit', compact('custom'));
     }
 
     /**
@@ -67,9 +71,11 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Customer $customer)
+    public function update(Request $request, $id)
     {
-        //
+        $custom = Customer::find($id);
+        $custom->update($request->all());
+        return view('customer.show', compact('custom'));
     }
 
     /**
@@ -78,8 +84,11 @@ class CustomerController extends Controller
      * @param  \App\Customer  $customer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Customer $customer)
+    public function destroy($id)
     {
-        //
+        $custom = Customer::find($id);
+        $custom->delete();
+
+        return redirect('customers');
     }
 }
