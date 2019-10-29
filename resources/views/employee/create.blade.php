@@ -5,7 +5,7 @@
 
 <div>
     <div>
-        <form class="form" action="" method="post">
+        <form class="form" action="{{ route('emplea.store') }}" method="post">
             @csrf
             <div>
                 <label>Nombre Completo</label>
@@ -16,7 +16,7 @@
                 <input type="text" name="position" class="input">
             </div>
             <div>
-                <label>Telefono</label>
+                <label>Teléfono</label>
                 <input type="text" name="phone" class="input">
             </div>
             <div>
@@ -29,14 +29,14 @@
             </div>
             <div>
                 <label>
-                <input type="checkbox">Activo
+                    <input name="is_active" type="checkbox">Estado
                 </label>
             </div>
             <br>
             <br>
             <div>
-            <button class="button" name="save">Guardar</button>
-            <button class="button" name="cancel">Cancelar</button>
+                <button class="button" name="save">Guardar</button>
+                <button class="button" name="cancel">Cancelar</button>
             </div>
         </form>
     </div>
