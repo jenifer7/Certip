@@ -22,3 +22,20 @@ Route::get('/supplier{suppl}', 'SupplierController@show')->name('show');
 Route::get('/supplier/{suppl}', 'SupplierController@edit')->name('edit');
 Route::patch('/supplier/{suppl}', 'SupplierController@update')->name('update');
 Route::delete('/supplier/{suppl}', 'SupplierController@destroy')->name('destroy');
+
+Route::get('/customer', 'CustomerController@create')->name('cliente.create');
+Route::get('/customers', 'CustomerController@index')->name('cliente.index');
+Route::post('/customer', 'CustomerController@store')->name('cliente.store');
+Route::get('/customer{custom}', 'CustomerController@show')->name('cliente.show');
+Route::get('/customer/{custom}', 'CustomerController@edit')->name('cliente.edit');
+Route::patch('/customer/{custom}', 'CustomerController@update')->name('cliente.update');
+Route::delete('/customer/{custom}', 'CustomerController@destroy')->name('cliente.destroy');
+
+Route::get('/employee', 'EmployeeController@create')->name('emplea.create');
+Route::get('/employees', 'EmployeeController@index')->name('emplea.index');
+Route::post('/employee', 'EmployeeController@store')->name('emplea.store');
+Route::get('/employee{emple}', 'EmployeeController@show')->name('emplea.show');
+Route::get('/employee/{emple}', 'EmployeeController@edit')->name('emplea.edit');
+Route::patch('/employee/{emple}', 'EmployeeController@update')->name('emplea.update');
+Route::delete('/employee/{emple}', 'EmployeeController@destroy')->name('emplea.destroy');
+
