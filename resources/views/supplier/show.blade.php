@@ -30,7 +30,6 @@
                 <td>{{ $suppl->phone }}</td>
                 <td>{{ $suppl->address }}</td>
                 <td>{{ $suppl->is_active }}</td>
-                <td><a href="{{ route('create') }}"><input type="submit" value="Agregar Nuevo"></a></td>
                 <td><a href="{{ route('edit', $suppl->id) }}"><input type="submit" value="Editar"></a></td>
                 <td>
                     <form action="{{ route('destroy', $suppl->id) }}" method="post"> 
@@ -39,6 +38,7 @@
                         <input type="submit" value="Borrar">
                     </form>
                 </td>
+                <td><a href="{{ route('index') }}"><input type="submit" value="Regresar"></a></td>
             </tr>
         </tbody>
     </table>
