@@ -11,16 +11,21 @@ class EmployeeController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
+     * Listado de empleados registrados
      */
     public function index()
     {
-        //
+        $emple = Employee::all();
+        return view('employee.index', compact('emple'));
     }
 
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
+     * 
+     * Formulario para crear un empleado nuevo
      */
     public function create()
     {
@@ -32,10 +37,13 @@ class EmployeeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * 
+     * Guarda el registro en la base de datos
      */
     public function store(Request $request)
     {
-        //
+        $emple = Employee::create($request->all());
+        return redirect('employees');
     }
 
     /**
@@ -44,9 +52,10 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show($id)
     {
-        //
+        $emple = Employee::find($id);
+        return view('employee.show', compact('emple'));
     }
 
     /**
@@ -55,9 +64,10 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function edit(Employee $employee)
+    public function edit($id)
     {
-        //
+        $emple = Employee::find($id);
+        return view('employee.edit', compact('emple'));
     }
 
     /**
@@ -67,9 +77,11 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Employee $employee)
+    public function update(Request $request, $id)
     {
-        //
+        $emple = Employee::find($id);
+        $emple->update($request->all());
+        return view('employee.show', compact('emple'));
     }
 
     /**
@@ -78,8 +90,11 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy($id)
     {
-        //
+        $emple = Employee::find($id);
+        $emple->delete();
+
+        return redirect('employees');
     }
 }
