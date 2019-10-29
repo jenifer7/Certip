@@ -24,7 +24,7 @@
                 <td>{{ $custom->address }}</td>
                 <td>{{ $custom->nit }}</td>
                 <td>{{ $custom->is_active }}</td>
-                <td><a href="">Detalle</a></td>
+                <td><a href="{{ route('cliente.show', $custom->id) }}">Detalle</a></td>
             </tr>
            @endforeach
         </tbody>
