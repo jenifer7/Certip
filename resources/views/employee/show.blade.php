@@ -34,7 +34,6 @@
                 <td>{{ $emple->address }}</td>
                 <td>{{ $emple->gender }}</td>
                 <td>{{ $emple->is_active }}</td>
-                <td><a href="{{ route('emplea.create') }}"><input type="submit" value="Agregar Nuevo"></a></td>
                 <td><a href="{{ route('emplea.edit', $emple->id) }}"><input type="submit" value="Editar"></a></td>
                 <td>
                     <form action="{{ route('emplea.destroy', $emple->id) }}" method="post"> 
@@ -43,6 +42,7 @@
                         <input type="submit" value="Borrar">
                     </form>
                 </td>
+                <td><a href="{{ route('emplea.index') }}"><input type="submit" value="Regresar"></a></td>
             </tr>
         </tbody>
     </table>
