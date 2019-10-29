@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use Illuminate\Cache\RetrievesMultipleKeys;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -14,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $prod = Product::all();
+        return view('product.index', compact('prod'));
     }
 
     /**
@@ -35,7 +37,8 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $prod = Product::create($request->all());
+        return redirect('products');
     }
 
     /**
@@ -44,9 +47,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $prod = Product::find($id);
+        return view('product.show', compact('prod'));
     }
 
     /**
@@ -55,9 +59,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $prod = Product::find($id);
+        return view('product.edit', compact('prod'));
     }
 
     /**
@@ -67,9 +72,11 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request,$id)
     {
-        //
+        $prod = Product::find($id);
+        $prod->update($request->all());
+        return view('product.show', compact('prod'));
     }
 
     /**
@@ -78,8 +85,11 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        $prod = Product::find($id);
+        $prod->delete();
+
+        return redirect('products');
     }
 }
