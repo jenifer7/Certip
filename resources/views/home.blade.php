@@ -7,14 +7,22 @@
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
-                <div class="card-content">
+                <div class="card-body">
                     @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
                     @endif
 
                     You are logged in!
+
+                    <li><a href="#" onclick="event.preventDefault();
+                         document.getElementById('logout-form').submit();">Cerrar Sesion</a>
+                    </li>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </div>
         </div>
