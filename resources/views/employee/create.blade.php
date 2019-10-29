@@ -32,6 +32,11 @@
                     <input name="is_active" type="checkbox">Estado
                 </label>
             </div>
+            <div>
+                <label>Id Usuario</label>
+                <input type="text" name="user_id" class="input" value="">
+            </div>
+          
             <br>
             <br>
             <div>
