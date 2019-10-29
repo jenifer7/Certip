@@ -39,3 +39,11 @@ Route::get('/employee/{emple}', 'EmployeeController@edit')->name('emplea.edit');
 Route::patch('/employee/{emple}', 'EmployeeController@update')->name('emplea.update');
 Route::delete('/employee/{emple}', 'EmployeeController@destroy')->name('emplea.destroy');
 
+Route::get('/user', 'UserController@create')->name('usuario.create');
+Route::get('/users', 'UserController@index')->name('usuario.index');
+Route::post('/user', 'UserController@store')->name('usuario.store');
+Route::get('/user{use}', 'UserController@show')->name('usuario.show');
+Route::get('/user/{use}', 'UserController@edit')->name('usuario.edit');
+Route::patch('/user/{use}', 'UserController@update')->name('usuario.update');
+Route::delete('/user/{use}', 'UserController@destroy')->name('usuario.destroy');
+
