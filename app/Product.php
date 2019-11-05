@@ -8,9 +8,10 @@ class Product extends Model
 {
     protected $table = 'products';
     protected $fillable = [
+        'code',
         'name', 
-        'unit_price',
-        'description', 
+        'description',
+        'unit_price', 
         'stock',
         'date_received',
         'supplier_id'
@@ -18,10 +19,6 @@ class Product extends Model
 
     public function supplier(){
         return $this->belongsTo('App\Supplier');
-    }
-
-    public function sales(){
-        return $this->hasMany('App\Sale');
     }
 
     public function details(){

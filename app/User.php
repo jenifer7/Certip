@@ -37,7 +37,8 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function employee(){
-        return $this->hasOne('App\Employee');
+    public function sales(){
+        return $this->hasMany('App\Sale');
     }
+
 }

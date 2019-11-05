@@ -8,22 +8,18 @@ class Sale extends Model
 {
     protected $table = 'sales'; 
     protected $fillable = [
-        'employee_id',
-        'date_sale',
         'customer_id',
-        'product_id',
+        'user_id',
+        'date_sale',
+        'total_sale',
     ];
 
-    public function employee(){
-        return $this->belongsTo('App\Employee');
+    public function user(){
+        return $this->belongsTo('App\User');
     }
 
     public function customer(){
         return $this->belongsTo('App\Customer');
-    }
-
-    public function product(){
-        return $this->belongsTo('App\Product');
     }
 
     public function detail(){
