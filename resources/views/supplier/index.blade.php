@@ -2,8 +2,22 @@
 
 @section('title', 'Bienvenido!!')
 @section('content')
-
-<div>
+<style>
+    .hero {
+        border-radius: 3px;
+    }
+</style>
+<div class="hero is-link">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title is-1">Proveedores</h1>
+        </div>
+    </div>
+</div>
+<div class="notification">
+    <div>
+        <a href="{{ route('create') }}"><button>Agregar</button></a>
+    </div>
     <table class="table">
         <thead>
             <tr>

@@ -21,7 +21,7 @@
             @csrf
             <div>
                 <label>Nombre</label>
-                <input type="text" name="name" class="input" required>
+                <input type="text" name="name" class="input" required value="{{old('name')}}">
             </div>
             <div>
                 <label>Telefono</label>
