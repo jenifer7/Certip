@@ -18,7 +18,6 @@ class EmployeesTableSeeder extends Seeder
                 'phone' => '46558999',
                 'address' => 'Barrio Nuevo',
                 'gender' => 1,
-                'user_id' => 1,
             ],
             [
                 'fullname' => 'Ovidio Guzman',
@@ -26,7 +25,6 @@ class EmployeesTableSeeder extends Seeder
                 'phone' => '45121133',
                 'address' => 'Col San Mateo 1',
                 'gender' => 0,
-                'user_id' => 2,
             ],
         ];
         DB::table('employees')->insert($empleado);

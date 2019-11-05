@@ -15,18 +15,14 @@ class DetailsTableSeeder extends Seeder
             [
                 'sale_id' => 1,
                 'product_id' => 1,
-                'price_unit' => 10,
                 'quantity' => 2,
-                'sub_total' => 20,
-                'total_sales' => 20,  
+                'price' => 10, 
             ],
             [
                 'sale_id' => 2,
                 'product_id' => 2,
-                'price_unit' => 20,
                 'quantity' => 3,
-                'sub_total' => 60,
-                'total_sales' => 60,  
+                'price' => 20,  
             ],
         ];
         DB::table('details')->insert($detalle);
