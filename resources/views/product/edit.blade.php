@@ -18,32 +18,35 @@
                 </ul>
             </div><br />
             @endif
-            <form action="" class="form" method="post">
+            <form action="{{ route('pro.update', $prod->id) }}" class="form" method="post">
                 @csrf
                 @method('PATCH')
                 <div>
                     <label>Nombre Producto</label>
-                    <input type="text" name="name" class="input" value="">
+                    <input type="text" name="name" class="input" value="{{ $prod->name }}">
                 </div>
                 <div>
                     <label>Precio Unidad</label>
-                    <input type="text" name="unit_price" class="input" value="">
+                    <input type="text" name="unit_price" class="input" value="{{ $prod->unit_price }}">
                 </div>
                 <div>
                     <label>Descripción</label>
-                    <input type="text" name="description" class="input" value="">
+                    <input type="text" name="description" class="input" value="{{ $prod->description }}">
                 </div>
                 <div>
                     <label>Stock</label>
-                    <input type="numeric" name="stock" class="input" value="">
+                    <input type="numeric" name="stock" class="input" value="{{ $prod->stock }}">
                 </div>
                 <div>
                     <label>Fecha Entrada Producto</label>
-                    <input type="date" name="date_received" class="input" value="">
+                    <input type="date" name="date_received" class="input" value="{{ $prod->date_received }}">
                 </div>
                 <div>
-                    <label>Proveedor</label>
-                    <input type="text" name="supplier_id" class="input" value="">
+                    <select name="supplier_id" class="select" id="">
+                        @foreach($proveedores as $proveedores)
+                        <option value="{{ $proveedores['id'] }}">{{ $proveedores['name'] }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div>
                     <button class="button" name="save">Guardar</button>

@@ -4,7 +4,7 @@
 @section('content')
 
 <div>
-    <form action="" class="form" method="post">
+    <form action="{{ route('pro.store') }}" class="form" method="post">
     @csrf 
     <div>
         <label>Nombre Producto</label>
@@ -12,7 +12,7 @@
     </div>
     <div>
         <label>Precio Unidad</label>
-        <input type="text" name="unit_price" class="input">
+        <input type="decimal" name="unit_price" class="input">
     </div>
     <div>
         <label>Descripción</label>
@@ -27,8 +27,11 @@
         <input type="date" name="date_received" class="input">
     </div>
     <div>
-        <label>Proveedor</label>
-        <input type="text" name="supplier_id" class="input">
+      <select name="supplier_id" class="select" id="">
+          @foreach($proveedores as $proveedores)
+          <option value="{{ $proveedores['id'] }}">{{ $proveedores['name'] }}</option>
+          @endforeach
+      </select>
     </div>
     <div>
         <button class="button" name="save">Guardar</button>

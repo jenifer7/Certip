@@ -21,8 +21,8 @@
                 <td>{{ $prod->name }}</td>
                 <td>{{ $prod->unit_price }}</td>
                 <td>{{ $prod->stock }}</td>
-                <td>{{ $prod->supplier_id }}</td>
-                <td><a href="">Detalle</a></td>
+                <td>{{ $prod->supplier->name }}</td>
+                <td><a href="{{ route('pro.show', $prod->id) }}">Detalle</a></td>
             </tr>
            @endforeach
         </tbody>

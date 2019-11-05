@@ -33,16 +33,16 @@
                 <td>{{ $prod->description }}</td>
                 <td>{{ $prod->stock }}</td>
                 <td>{{ $prod->date_received }}</td>
-                <td>{{ $prod->supplier_id }}</td>
-                <td><a href=""><input type="submit" value="Editar"></a></td>
+                <td>{{ $prod->supplier->name }}</td>
+                <td><a href="{{ route('pro.edit', $prod->id) }}"><input type="submit" value="Editar"></a></td>
                 <td>
-                    <form action="" method="post"> 
+                    <form action="{{ route('pro.destroy', $prod->id) }}" method="post"> 
                         @csrf
                         @method('DELETE')
                         <input type="submit" value="Borrar">
                     </form>
                 </td>
-                <td><a href=""><input type="submit" value="Regresar"></a></td>
+                <td><a href="{{ route('pro.index') }}"><input type="submit" value="Regresar"></a></td>
             </tr>
         </tbody>
     </table>
