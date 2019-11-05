@@ -17,10 +17,8 @@ class CreateDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('sale_id');
             $table->unsignedBigInteger('product_id');
-            $table->decimal('price_unit');
             $table->bigInteger('quantity');
-            $table->decimal('sub_total');
-            $table->decimal('total_sales');
+            $table->decimal('price', 11,2);
             $table->foreign('sale_id')->references('id')->on('sales');
             $table->foreign('product_id')->references('id')->on('products');
             $table->timestamps();
