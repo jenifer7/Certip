@@ -15,14 +15,12 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fullname');
+            $table->string('fullname', 60);
             $table->string('position');
             $table->string('phone');
-            $table->string('address');
+            $table->string('address', 120);
             $table->boolean('gender');
             $table->boolean('is_active')->default('1');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
