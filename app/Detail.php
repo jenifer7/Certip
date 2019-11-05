@@ -14,10 +14,8 @@ class Detail extends Model
     protected $fillable = [
         'sale_id',
         'product_id',
-        'price_unit',
         'quantity',
-        'sub_total',
-        'total_sales'
+        'price',
     ];
 
     public function sale(){
