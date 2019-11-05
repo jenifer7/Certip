@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Supplier;
 use Illuminate\Cache\RetrievesMultipleKeys;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $proveedores = Supplier::all();
+        return view('product.create', compact('proveedores'));
     }
 
     /**
@@ -61,8 +63,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
+        $proveedores = Supplier::all();
         $prod = Product::find($id);
-        return view('product.edit', compact('prod'));
+        return view('product.edit', compact('prod', 'proveedores'));
     }
 
     /**
