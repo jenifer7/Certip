@@ -18,20 +18,20 @@ class SaleController extends Controller
      */
     public function index(Request $request)
     {
-            $venta = DB::table('sales as s')
-                ->join('customers as c', 's.customer_id', '=', 'c.id')
-                ->join('details as d', 's.id', '=', 'd.sale_id')
-                ->select(
-                    's.id',
-                    's.date_sale',
-                    'c.fullname',
-                    's.total_sales'
-                )
-                ->orderBy('s.id')
-                ->groupBy('s.id', 's.date_sale','c.fullname')
-                ->get();
-            return view('sale.index',compact('venta'));
-            // return view('sale.index', ["venta" => $venta]);
+        $venta = DB::table('sales as s')
+            ->join('customers as c', 's.customer_id', '=', 'c.id')
+            ->join('details as d', 's.id', '=', 'd.sale_id')
+            ->select(
+                's.id',
+                's.date_sale',
+                'c.fullname',
+                's.total_sales'
+            )
+            ->orderBy('s.id')
+            ->groupBy('s.id', 's.date_sale', 'c.fullname')
+            ->get();
+        return view('sale.index', compact('venta'));
+        // return view('sale.index', ["venta" => $venta]);
     }
 
     /**
@@ -42,7 +42,7 @@ class SaleController extends Controller
     public function create()
     {
         $cliente = DB::table('customers')->get();
-        $producto = DB::table('products as p')
+        $productos = DB::table('products as p')
             ->join('details as de', 'p.id', '=', 'de.product_id')
             ->select(
                 DB::raw('CONCAT(p.code," ",p.name)as producto'),
@@ -55,7 +55,7 @@ class SaleController extends Controller
             ->groupBy('producto', 'p.id', 'p.stock')
             ->get();
 
-        return view('sale.create', ['cliente' => $cliente, 'producto' => $producto]);
+        return view('sale.create', ['cliente' => $cliente, 'productos' => $productos]);
         // return view('sale.create', compact('empleado', 'cliente', 'producto'));
     }
 
@@ -69,8 +69,9 @@ class SaleController extends Controller
     {
         // $vent = Sale::create($request->all());
         // return redirect('sales');
-        DB::transaction();
-        $venta = new App\Sale;
+
+        DB::beginTransaction();
+        $venta = new Sale;
         $venta->customer_id = $request->get('customer_id');
         $venta->total_sales = $request->get('total_sales');
 
@@ -78,21 +79,23 @@ class SaleController extends Controller
         $venta->date_sale = $fecha;
         $venta->save();
 
-        $articulo = $request->get('product_id');
+        $idarticulo = $request->get('product_id');
         $cantidad = $request->get('stock');
         $precio = $request->get('sale_price');
 
         $cont = 0;
-        while ($cont < count($articulo)) {
-            $detalle = new App\Detail();
+        while ($cont < count($idarticulo)) {
+            $detalle = new Detail();
             $detalle->sale_id = $venta->id;
-            $detalle->product_id = $articulo[$cont];
+            $detalle->product_id = $idarticulo[$cont];
             $detalle->stock = $cantidad[$cont];
             $detalle->price = $precio[$cont];
             $detalle->save();
             $cont = $cont + 1;
         }
         DB::commit();
+
+        return redirect('sales');
     }
 
     /**
