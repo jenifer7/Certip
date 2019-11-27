@@ -7,6 +7,10 @@
     <form action="{{ route('pro.store') }}" class="form" method="post">
     @csrf 
     <div>
+        <label>Codigo</label>
+        <input type="number" name="code" class="input">
+    </div>
+    <div>
         <label>Nombre Producto</label>
         <input type="text" name="name" class="input">
     </div>

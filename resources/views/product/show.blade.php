@@ -10,14 +10,15 @@
 <div class="hero is-link">
     <div class="hero-body">
         <div class="container">
-            <h1 class="title is-1">Proveedor</h1>
+            <h1 class="title is-1">Producto</h1>
         </div>
     </div>
 </div>
-<div class="notification">
+<div>
     <table class="table is-fullwidth">
         <thead>
             <tr>
+                <th>Código</th>
                 <th>Nombre Producto</th>
                 <th>Precio Unidad</th>
                 <th>Descripción</th>
@@ -28,6 +29,7 @@
         </thead>
         <tbody>
             <tr>
+                <td>{{ $prod->code }}</td>
                 <td>{{ $prod->name }}</td>
                 <td>{{ $prod->unit_price }}</td>
                 <td>{{ $prod->description }}</td>

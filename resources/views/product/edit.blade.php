@@ -22,6 +22,10 @@
                 @csrf
                 @method('PATCH')
                 <div>
+                    <label>Códig</label>
+                    <input type="number" name="code" class="input" value="{{ $prod->code }}">
+                </div>
+                <div>
                     <label>Nombre Producto</label>
                     <input type="text" name="name" class="input" value="{{ $prod->name }}">
                 </div>

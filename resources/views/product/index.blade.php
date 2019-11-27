@@ -4,6 +4,9 @@
 @section('content')
 
 <div>
+    <div>
+        <a href="{{ route('pro.create') }}"><button>Agregar</button></a>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -24,7 +27,7 @@
                 <td>{{ $prod->supplier->name }}</td>
                 <td><a href="{{ route('pro.show', $prod->id) }}">Detalle</a></td>
             </tr>
-           @endforeach
+            @endforeach
         </tbody>
     </table>
 </div>
