@@ -57,9 +57,7 @@ Route::delete('/product/{prod}', 'ProductController@destroy')->name('pro.destroy
 
 Route::get('/sale', 'SaleController@create')->name('sale.create');
 Route::get('/sales', 'SaleController@index')->name('sale.index');
-// Route::post('/sale', 'SaleController@store')->name('sale.store');
-// Route::get('/sale{vent}', 'SaleController@show')->name('sale.show');
-// Route::get('/sale/{vent}', 'SaleController@edit')->name('sale.edit');
-// Route::patch('/sale/{vent}', 'SaleController@update')->name('sale.update');
-// Route::delete('/sale/{vent}', 'SaleController@destroy')->name('sale.destroy');
+Route::post('/sale', 'SaleController@store')->name('sale.store');
+Route::get('/sale{vent}', 'SaleController@show')->name('sale.show');
+Route::get('/sale/{venta}', 'SaleController@destroy')->name('sale.destroy');
 
