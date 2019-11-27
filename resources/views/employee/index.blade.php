@@ -4,6 +4,9 @@
 @section('content')
 
 <div>
+    <div>
+        <a href="{{ route('emplea.create') }}"><button>Agregar</button></a>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -11,9 +14,6 @@
                 <td>Nombre Completo</td>
                 <td>Posición</td>
                 <td>Teléfono</td>
-                <td>Direccion</td>
-                <td>Género</td>
-                <td>Estado</td>
             </tr>
         </thead>
         <tbody>
@@ -23,12 +23,9 @@
                 <td>{{ $emple->fullname }}</td>
                 <td>{{ $emple->position }}</td>
                 <td>{{ $emple->phone }}</td>
-                <td>{{ $emple->address }}</td>
-                <td>{{ $emple->gender }}</td>
-                <td>{{ $emple->is_active }}</td>
                 <td><a href="{{ route('emplea.show', $emple->id) }}">Detalle</a></td>
             </tr>
-           @endforeach
+            @endforeach
         </tbody>
     </table>
 </div>
