@@ -14,7 +14,7 @@
         </div>
     </div>
 </div>
-<div class="notification">
+<div>
     <table class="table is-fullwidth">
         <thead>
             <tr>

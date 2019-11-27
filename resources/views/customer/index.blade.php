@@ -3,16 +3,16 @@
 @section('title', 'Bienvenido!!')
 @section('content')
 
-<div>
+<div class="notification">
+    <div>
+        <a href="{{ route('cliente.create') }}"><button>Agregar</button></a>
+    </div>
     <table class="table">
         <thead>
             <tr>
                 <td>Id</td>
                 <td>Nombre Completo</td>
                 <td>Telefono</td>
-                <td>Direccion</td>
-                <td>NIT</td>
-                <td>Estado</td>
             </tr>
         </thead>
         <tbody>
@@ -21,12 +21,9 @@
                 <td>{{ $custom->id }}</td>
                 <td>{{ $custom->fullname }}</td>
                 <td>{{ $custom->phone }}</td>
-                <td>{{ $custom->address }}</td>
-                <td>{{ $custom->nit }}</td>
-                <td>{{ $custom->is_active }}</td>
                 <td><a href="{{ route('cliente.show', $custom->id) }}">Detalle</a></td>
             </tr>
-           @endforeach
+            @endforeach
         </tbody>
     </table>
 </div>
