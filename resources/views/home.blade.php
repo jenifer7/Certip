@@ -1,30 +1,26 @@
-@extends('layouts.app')
+@extends('layouts.layout')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                    @endif
-
-                    You are logged in!
-
-                    <li><a href="#" onclick="event.preventDefault();
-                         document.getElementById('logout-form').submit();">Cerrar Sesion</a>
-                    </li>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+<div class="notification">
+    <div class="tile is-ancestor">
+        <div class="tile is-vertical is-8">
+            <div class="tile">
+                <div class="tile is-parent is-vertical">
+                    <span class="tile is-clickable is-child notification is-primary has-text-centered is-tile-container" onclick="location.href='/'">
+                        <p class="title" style="margin: 5%"></p>
+                    </span>
+                </div>
+                <div class="tile is-parent">
+                    <span class="tile is-clickable is-child notification is-info is-tile-container" onclick="location.href='/'">
+                        <p style="margin: 5%" class="title"></p>
+                    </span>
                 </div>
             </div>
+        </div>
+        <div class="tile is-parent">
+            <span class="tile is-clickable is-child notification is-success is-tile-container" onclick="location.href='#'">
+                <p style="margin: 5%" class="title"></p>
+            </span>
         </div>
     </div>
 </div>

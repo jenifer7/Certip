@@ -16,13 +16,13 @@ class SalesTableSeeder extends Seeder
                 'customer_id' => 1,
                 'user_id' => 1,
                 'date_sale' => '2019-10-05',
-                'total_sales' => 100,
+                'total_sales' => 20,
             ],
             [
                 'customer_id' => 2,
                 'user_id' => 2,
                 'date_sale' => '2019-10-05',
-                'total_sales' => 150,
+                'total_sales' => 60,
             ],
         ];
         DB::table('sales')->insert($venta);

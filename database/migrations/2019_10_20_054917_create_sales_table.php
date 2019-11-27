@@ -19,6 +19,7 @@ class CreateSalesTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->date('date_sale');
             $table->decimal('total_sales');
+            $table->boolean('is_active')->default('1');
             $table->foreign('customer_id')->references('id')->on('customers');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
