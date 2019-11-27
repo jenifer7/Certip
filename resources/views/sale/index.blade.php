@@ -4,6 +4,9 @@
 @section('content')
 
 <div>
+    <div>
+        <a href="{{ route('sale.create') }}"><button>Agregar</button></a>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -18,9 +21,9 @@
                 <td>{{ $venta->date_sale }}</td>
                 <td>{{ $venta->fullname }}</td>
                 <td>{{ $venta->total_sales }}</td>
-                <td><a href="">Detalle</a></td>
+                <td><a href="{{ route('sale.show', $venta->id) }}">Detalle</a></td>
             </tr>
-           @endforeach
+            @endforeach
         </tbody>
     </table>
 </div>
