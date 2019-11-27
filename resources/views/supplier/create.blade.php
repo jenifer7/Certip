@@ -1,6 +1,6 @@
 @extends('layouts.layout')
 
-@section('title', 'Bienvenido!!')
+@section('title', 'Proveedores!!')
 @section('content')
 
 <div class="card uper">
@@ -14,7 +14,8 @@
         </ul>
       </div><br />
     @endif
-    
+  </div>
+</div>
 <div>
     <div>
         <form action="{{ route('store') }}" class="form" method="post">
