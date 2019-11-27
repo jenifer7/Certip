@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Detail;
 use App\Employee;
 use App\Product;
 use App\Sale;
@@ -11,6 +12,16 @@ use Illuminate\Http\Request;
 
 class SaleController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -18,22 +29,23 @@ class SaleController extends Controller
      */
     public function index(Request $request)
     {
-        $venta = DB::table('sales as s')
-            ->join('customers as c', 's.customer_id', '=', 'c.id')
-            ->join('details as d', 's.id', '=', 'd.sale_id')
-            ->select(
-                's.id',
-                's.date_sale',
-                'c.fullname',
-                's.total_sales'
-            )
-            ->orderBy('s.id')
-            ->groupBy('s.id', 's.date_sale', 'c.fullname')
-            ->get();
-        return view('sale.index', compact('venta'));
-        // return view('sale.index', ["venta" => $venta]);
+        if ($request) {
+            $venta = DB::table('sales as s')
+                ->join('customers as c', 's.customer_id', '=', 'c.id')
+                ->join('details as d', 's.id', '=', 'd.sale_id')
+                ->select(
+                    's.id',
+                    's.date_sale',
+                    'c.fullname',
+                    's.total_sales'
+                )
+                ->orderBy('s.id')
+                ->groupBy('s.id', 's.date_sale', 'c.fullname')
+                ->get();
+            return view('sale.index', compact('venta'));
+            // return view('sale.index', ["venta" => $venta]);
+        }
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -41,21 +53,21 @@ class SaleController extends Controller
      */
     public function create()
     {
+        $fecha = now()->toDateString('Y-m-d');
         $cliente = DB::table('customers')->get();
         $productos = DB::table('products as p')
-            ->join('details as de', 'p.id', '=', 'de.product_id')
             ->select(
                 DB::raw('CONCAT(p.code," ",p.name)as producto'),
                 'p.id',
                 'p.stock',
-                DB::raw('avg(de.price)as sale_price')
+                'p.unit_price'
             )
             ->where('p.is_active', '=', '1')
             ->where('p.stock', '>', '0')
-            ->groupBy('producto', 'p.id', 'p.stock')
+            // ->groupBy('producto', 'p.id', 'p.stock')
             ->get();
 
-        return view('sale.create', ['cliente' => $cliente, 'productos' => $productos]);
+        return view('sale.create', ['cliente' => $cliente, 'productos' => $productos, 'fecha'=>$fecha]);
         // return view('sale.create', compact('empleado', 'cliente', 'producto'));
     }
 
@@ -67,35 +79,38 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        // $vent = Sale::create($request->all());
-        // return redirect('sales');
+        try { 
+            DB::beginTransaction();
+            $venta = new Sale;
+            $venta->date_sale = $request->get('date_sale');
+            $venta->user_id = $request->get('user_id');
+            $venta->customer_id = $request->get('customer_id');
+            $venta->total_sales = $request->get('total_sales');
+            $venta->saveOrFail();
 
-        DB::beginTransaction();
-        $venta = new Sale;
-        $venta->customer_id = $request->get('customer_id');
-        $venta->total_sales = $request->get('total_sales');
+            $product_id  = $request->get('id_producto');
+            $quantity = $request->get('cantidad');
+            $price = $request->get('precio_venta');
 
-        $fecha = now()->toDateString('Y-m-d');
-        $venta->date_sale = $fecha;
-        $venta->save();
+            $cont = 0;
+            
+            while ($cont < count($product_id)) {
+                $detalle = new Detail;
+                $detalle->sale_id = $venta->id;
+                $detalle->product_id = $product_id[$cont];
+                $detalle->quantity = $quantity[$cont];
+                $detalle->price = $price[$cont];
+                $detalle->saveOrFail();
 
-        $idarticulo = $request->get('product_id');
-        $cantidad = $request->get('stock');
-        $precio = $request->get('sale_price');
-
-        $cont = 0;
-        while ($cont < count($idarticulo)) {
-            $detalle = new Detail();
-            $detalle->sale_id = $venta->id;
-            $detalle->product_id = $idarticulo[$cont];
-            $detalle->stock = $cantidad[$cont];
-            $detalle->price = $precio[$cont];
-            $detalle->save();
-            $cont = $cont + 1;
+                $cont = $cont + 1;
+            }
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollback();
         }
-        DB::commit();
 
         return redirect('sales');
+        // return ($request);
     }
 
     /**
@@ -106,8 +121,23 @@ class SaleController extends Controller
      */
     public function show($id)
     {
-        // $vent = Sale::find($id);
-        // return view('sale.show', compact('vent'));
+        $venta = DB::table('sales as s')
+            ->join('customers as c', 's.customer_id', '=', 'c.id')
+            ->join('details as d', 's.id', '=', 'd.sale_id')
+            ->select(
+                's.id',
+                's.date_sale',
+                'c.fullname',
+                's.total_sales'
+            )
+            ->where('s.id', '=', $id)
+            ->first();
+
+        $detalles = DB::table('details as d')
+            ->join('products as p', 'd.product_id', '=', 'p.id')
+            ->select('p.name as pro', 'd.quantity', 'd.price')
+            ->where('d.sale_id', '=', $id)->get();
+        return view('sale.show', ['venta' => $venta, 'detalles' => $detalles]);
     }
 
     /**
@@ -118,12 +148,7 @@ class SaleController extends Controller
      */
     public function edit($id)
     {
-        // $empleado = Employee::all();
-        // $cliente = Customer::all();
-        // $producto = Product::all();
-
-        // $vent = Sale::find($id);
-        // return view('sale.edit', compact('vent','empleado','cliente','producto'));
+        //
     }
 
     /**
@@ -135,9 +160,7 @@ class SaleController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $vent = Sale::find($id);
-        // $vent->update($request->all());
-        // return view('sale.show', compact('vent'));
+        //
     }
 
     /**
@@ -148,9 +171,10 @@ class SaleController extends Controller
      */
     public function destroy($id)
     {
-        // $vent = Sale::find($id);
-        // $vent->delete();
+        $venta = Sale::find($id);
+        $venta->is_active = '0';
+        $venta->update();
 
-        // return redirect('sales');
+        return redirect('sales');
     }
 }

@@ -2,11 +2,21 @@
 
 namespace App\Http\Controllers;
 
-use App\Detail;
+use App\User;
 use Illuminate\Http\Request;
 
-class DetailController extends Controller
+class UserController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +24,8 @@ class DetailController extends Controller
      */
     public function index()
     {
-        //
+        $use = User::all();
+        return view('user.index', compact('use'));
     }
 
     /**
@@ -24,7 +35,7 @@ class DetailController extends Controller
      */
     public function create()
     {
-        //
+      return view('user.create');
     }
 
     /**
@@ -35,51 +46,59 @@ class DetailController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $use = User::create($request->all());
+        return redirect('users');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Detail  $detail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Detail $detail)
+    public function show($id)
     {
-        //
+        $use = User::find($id);
+        return view('user.show', compact('use'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Detail  $detail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Detail $detail)
+    public function edit($id)
     {
-        //
+        $use = User::find($id);
+        return view('user.edit', compact('use'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Detail  $detail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Detail $detail)
+    public function update(Request $request, $id)
     {
-        //
+        $use = User::find($id);
+        $use->update($request->all());
+        return view('user.show', compact('use'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Detail  $detail
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Detail $detail)
+    public function destroy($id)
     {
-        //
+        $use = User::find($id);
+        $use->delete();
+
+        return redirect('users');
     }
 }
