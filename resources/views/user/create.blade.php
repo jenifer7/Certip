@@ -16,24 +16,32 @@
     @endif
     
 <div>
+<div class="hero is-link">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title is-1">Crear Usuario</h1>
+        </div>
+    </div>
+</div>
+<br>
     <div>
         <form action="{{ route('usuario.store') }}" class="form" method="post">
             @csrf
             <div>
-                <label>Nombre</label>
+                <label class="label">Nombre</label>
                 <input type="text" name="name" class="input" required>
             </div>
             <div>
-                <label for="email">Email</label>
+                <label class="label" for="email">Email</label>
                 <input type="email" name="email" class="input" required>
             </div>
             <div>
-                <label>Contraseña</label>
+                <label class="label">Contraseña</label>
                 <input type="password" name="password" class="input" required>
             </div>
             <div>
-                <button class="button" name="save">Guardar</button>
-                <button class="button" name="cancel">Cancelar</button>
+                <button class="button is-success" name="save">Guardar</button>
+                <a href="{{route('usuario.index')}}" class="button is-warning" name="cancel">Cancelar</a>
             </div>
         </form>
     </div>

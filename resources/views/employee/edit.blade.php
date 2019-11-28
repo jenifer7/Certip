@@ -5,6 +5,13 @@
 
 <div>
     <div>
+        <div class="hero is-link">
+            <div class="hero-body">
+                <div class="container">
+                    <h1 class="title is-1">Empleado</h1>
+                </div>
+            </div>
+        </div>
         <div class="card-header">
             Edit
         </div>
@@ -22,33 +29,33 @@
                 @csrf
                 @method('PATCH')
                 <div>
-                    <label>Nombre Completo</label>
+                    <label class="label">Nombre Completo</label>
                     <input type="text" name="fullname" class="input" value="{{ $emple->fullname }}">
                 </div>
                 <div>
-                    <label>Posición</label>
+                    <label class="label">Posición</label>
                     <input type="text" name="position" class="input" value="{{ $emple->position }}">
                 </div>
                 <div>
-                    <label>Telefono</label>
+                    <label class="label">Telefono</label>
                     <input type="text" name="phone" class="input" value="{{ $emple->phone }}">
                 </div>
                 <div>
-                    <label>Dirección</label>
+                    <label class="label">Dirección</label>
                     <input type="text" name="address" class="input" value="{{ $emple->address }}">
                 </div>
                 <div>
-                    <label>Género</label>
+                    <label class="label">Género</label>
                     <input type="text" name="gender" class="input" value="{{ $emple->gender }}">
                 </div>
                 <div>
-                    <label>
+                    <label class="label">
                         <input type="checkbox" name="is_active" value="{{ $emple->is_active }}">Estado
                     </label>
                 </div>
                 <div>
-                    <button class="button" name="save">Guardar</button>
-                    <button class="button" name="cancel">Cancelar</button>
+                    <button class="button is-success" name="save">Guardar</button>
+                   <a href="{{ route('emplea.show', $emple->id) }}"><button class="button is-warning" name="cancel">Cancelar</button></a>
                 </div>
             </form>
         </div>

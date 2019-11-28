@@ -10,19 +10,23 @@
 <div class="hero is-link">
     <div class="hero-body">
         <div class="container">
-            <h1 class="title is-1">Proveedor</h1>
+            <h1 class="title is-1">Cliente</h1>
         </div>
     </div>
 </div>
+<br>
 <div>
     <table class="table is-fullwidth">
-        <thead>
+        <thead style="background-color: #A9D0F5">
             <tr>
                 <th>Nombre Completo</th>
                 <th>Telefono</th>
                 <th>Dirección</th>
                 <th>NIT</th>
                 <th>Estado</th>
+                <th></th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -32,15 +36,15 @@
                 <td>{{ $custom->address }}</td>
                 <td>{{ $custom->nit }}</td>
                 <td>{{ $custom->is_active }}</td>
-                <td><a href="{{ route('cliente.edit', $custom->id) }}"><input type="submit" value="Editar"></a></td>
+                <td><a href="{{ route('cliente.edit', $custom->id) }}"><input type="submit" class="button is-info" value="Editar"></a></td>
                 <td>
                     <form action="{{ route('cliente.destroy', $custom->id) }}" method="post"> 
                         @csrf
                         @method('DELETE')
-                        <input type="submit" value="Borrar">
+                        <input class="button is-danger" type="submit" value="Borrar">
                     </form>
                 </td>
-                <td><a href="{{ route('cliente.index') }}"><input type="submit" value="Regresar"></a></td>
+                <td><a href="{{ route('cliente.index') }}"><input class="button is-dark" type="submit" value="Regresar"></a></td>
             </tr>
         </tbody>
     </table>

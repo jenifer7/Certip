@@ -15,13 +15,12 @@
         </div>
     </div>
 </div>
+<br>
 <div>
-    <a href="{{ route('sale.destroy', $venta->id) }}"><button class="button">Anular</button></a>
+    <label class="label" for="nombre">Cliente</label>
+    <span><p>{{ $venta->fullname }}</p></span>
 </div>
-<div>
-    <label for="nombre">Cliente</label>
-    <p>{{ $venta->fullname }}</p>
-</div>
+<br>
 <div class="">
     <div class="">
         <!-- <div>

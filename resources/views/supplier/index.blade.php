@@ -16,14 +16,16 @@
 </div>
 <div>
     <div>
-        <a href="{{ route('create') }}"><button>Agregar</button></a>
+        <a href="{{ route('create') }}"><button class="button is-dark is-outlined">Agregar</button></a>
     </div>
-    <table class="table">
-        <thead>
+    <br>
+    <table class="table is-hoverable is-fullwidth">
+        <thead style="background-color: #A9D0F5">
             <tr>
                 <td>Id</td>
                 <td>Nombre</td>
                 <td>Telefono</td>
+                <td></td>
             </tr>
         </thead>
         <tbody>
@@ -32,9 +34,9 @@
                 <td>{{ $suppl->id }}</td>
                 <td>{{ $suppl->name }}</td>
                 <td>{{ $suppl->phone }}</td>
-                <td><a href="{{ route('show', $suppl->id) }}">Detalle</a></td>
+                <td><a class="button is-link" href="{{ route('show', $suppl->id) }}">Detalle</a></td>
             </tr>
-           @endforeach
+            @endforeach
         </tbody>
     </table>
 </div>

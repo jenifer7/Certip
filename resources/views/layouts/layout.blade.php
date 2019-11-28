@@ -12,12 +12,9 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/bulma@0.8.0/css/bulma.min.css" />
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('js/jquery-3.4.1.min.js') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Poppins" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.icons8.com/fonts/line-awesome/1.1/css/line-awesome-font-awesome.min.css">
-
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-25065548-2"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
@@ -62,11 +59,11 @@
                             @csrf
                         </form>
 
-                        <a class="navbar-item">
+                        <a href="{{ route('usuario.create') }}" class="navbar-item">
                             <span class="icon is-small">
                                 <i class="fa fa-user-o"></i>
                             </span>
-                            &nbsp; Perfil
+                            &nbsp; CrearUsuario
                         </a>
                         <hr class="navbar-divider">
                         <div class="navbar-item">
@@ -81,8 +78,8 @@
     {{-- navbar end --}}
 
     <div class="columns" id="app-content">
-        <div class="column is-2 is-fullheight is-hidden-touch" id="navigation">
-            <aside class="menu">
+        <div class="column is-2 is-fullheight" id="navigation">
+            <aside class="aside">
                 <p class="menu-label is-hidden-touch">
                     General
                 </p>
@@ -99,7 +96,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="" >
+                        <a class="is-active" >
                             <span class="icon">
                                 <i class="fa fa-edit"></i>
                             </span> Proveedores
@@ -110,7 +107,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="" >
+                        <a class="is-active" >
                             <span class="icon">
                                 <i class="fa fa-desktop"></i>
                             </span>Clientes
@@ -121,7 +118,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="">
+                        <a class="is-active">
                             <span class="icon">
                                 <i class="fa fa-table"></i>
                             </span> Ventas
@@ -132,10 +129,17 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="" href="{{ route('emplea.index') }}">
+                        <a class="is-active" href="{{ route('emplea.index') }}">
                             <span class="icon">
                                 <i class="fa fa-table"></i>
                             </span> Empleados
+                        </a>
+                    </li>
+                    <li>
+                        <a class="is-active" href="{{ route('usuario.index') }}">
+                            <span class="icon">
+                                <i class="fa fa-table"></i>
+                            </span> Usuarios
                         </a>
                     </li>
                 </ul>
@@ -146,9 +150,6 @@
                 <h4 class="title is-4">CERTIP</h4>
                 <span class="separator"></span>
                 <nav class="breadcrumb has-bullet-separator" aria-label="breadcrumbs">
-                    <ul>
-                        <li class="is-active"><a href="#" aria-current="page">General</a></li>
-                    </ul>
                 </nav>
             </div>
             <div class="content-body">
